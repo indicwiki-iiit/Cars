@@ -38,6 +38,12 @@ requirements.txt comes along with the Project Directory.
 * 30k_cars.csv-This is the final attribute file for 30K Cars.
 * Cars_report.html-This data analysis report is used to check how many unique values are present for every attribute and how many missing values for the attributes.
 
+### Sample article
+>Github folder Link:
+*This is the sample article for Indian Cars
+>Github folder Link:
+*This is the sample article for 30K Cars
+
 ### Generating XML dump
 
 * Follow the comments of 'render.py' and uncomment necessary lines to generate XML dump.
