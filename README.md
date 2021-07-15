@@ -36,7 +36,7 @@ requirements.txt comes along with the Project Directory.
 * This folder contains the final versions of the datasets.
 * Indian_cars.csv-This is the final attributes file for the Indian Cars.
 * 30k_cars.csv-This is the final attribute file for 30K Cars.
-•	Cars_report.html-This data analysis report is used to check how many unique values are present for every attribute and how many missing values for the attributes.
+* Cars_report.html-This data analysis report is used to check how many unique values are present for every attribute and how many missing values for the attributes.
 
 ### Generating XML dump
 
