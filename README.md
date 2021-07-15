@@ -31,7 +31,7 @@ requirements.txt comes along with the Project Directory.
 
 ## Templates
 
- Github folder link:
+ 'Github folder link:'
 
 * Cars.indian.j2-This template contains the information about Infobox, Introduction, Engine and Performance, Design for Indian Cars.
 
