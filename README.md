@@ -17,7 +17,7 @@ $ pip install -r requirements.txt
 ```
 requirements.txt comes along with the Project Directory. 
 ## Guide to generate articles and corresponding XML files
-*Clone the repository into the local system.
+* Clone the repository into the local system.
 
 * For generating an article, one need the data, render.py, template and genXML.py. Make sure that these files are available.
 
