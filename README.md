@@ -40,10 +40,12 @@ requirements.txt comes along with the Project Directory.
 
 ### Sample article
 >Github folder Link:
-*This is the sample article for Indian Cars
+
+* This is the sample article for Indian Cars
 
 >Github folder Link:
-*This is the sample article for 30K Cars
+
+* This is the sample article for 30K Cars
 
 ### Generating XML dump
 
