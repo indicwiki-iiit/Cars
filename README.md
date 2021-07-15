@@ -28,7 +28,8 @@ requirements.txt comes along with the Project Directory.
 ## Data
 * Indian cars.csv-This is the final dataset which contains the attributes of Indian Cars.
 *•	Cars_report.html-This data analysis report is used to check how many unique values are present for every attribute and how many missing values for the attributes.
-##Templates
+
+## Templates
 * Cars.indian.j2-This template contains the information about Infobox, Introduction, Engine and Performance, Design.
 ### Generating XML dump
 
