@@ -30,7 +30,8 @@ requirements.txt comes along with the Project Directory.
 *•	Cars_report.html-This data analysis report is used to check how many unique values are present for every attribute and how many missing values for the attributes.
 
 ## Templates
-* Cars.indian.j2-This template contains the information about Infobox, Introduction, Engine and Performance, Design.
+* Cars.indian.j2-This template contains the information about Infobox, Introduction, Engine and Performance, Design for Indian Cars.
+
 ### Generating XML dump
 
 * Follow the comments of 'render.py' and uncomment necessary lines to generate XML dump.
