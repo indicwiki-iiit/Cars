@@ -38,6 +38,12 @@ requirements.txt comes along with the Project Directory.
 * 30k_cars.csv-This is the final attribute file for 30K Cars.
 * Cars_report.html-This data analysis report is used to check how many unique values are present for every attribute and how many missing values for the attributes.
 
+
+### Scraping
+>Github folder Link:
+
+*This is the scraping code used for car details
+
 ## Converting_to_pickle.py:
 >Github folder Link:
 
