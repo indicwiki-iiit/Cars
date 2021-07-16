@@ -42,7 +42,7 @@ requirements.txt comes along with the Project Directory.
 ### Scraping
 >Github folder Link:
 
-*This is the scraping code used for car details
+* This is the scraping code used for car details
 
 ## Converting_to_pickle.py:
 >Github folder Link:
