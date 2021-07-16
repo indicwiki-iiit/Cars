@@ -42,7 +42,7 @@ requirements.txt comes along with the Project Directory.
 ### Scraping
 >Github folder Link:https://github.com/nicolas-gervais/predicting-car-price-from-scraped-data
 
-* This is the scraping code used for car details
+* This is the scraping code used for extracting the car details
 
 ## Converting_to_pickle.py:
 >Github folder Link:
