@@ -38,6 +38,15 @@ requirements.txt comes along with the Project Directory.
 * 30k_cars.csv-This is the final attribute file for 30K Cars.
 * Cars_report.html-This data analysis report is used to check how many unique values are present for every attribute and how many missing values for the attributes.
 
+## Converting_to_pickle.py:
+>Github folder Link:
+
+* This file contains code for reading the dataset and generating a pickle file for Indian Cars.
+
+>Github folder Link:
+
+* This file contains code for reading the dataset and generating a pickle file for 30K Cars.
+
 ### Sample article
 >Github folder Link:
 
