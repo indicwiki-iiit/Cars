@@ -1,0 +1,752 @@
+{% macro Infobox(img,manufacturer,Name,Type,Power,Fuel_Type,Body_Type,Wheelbase,Length,Height,Kerb_Weight,Width) %}
+        {{'{{Infobox Automobile\n'}}
+        {%- if img != "#" -%}
+        |image = {{img}}
+        {%- endif -%}
+        |name =     {{Name}}
+        |manufacturer = {{manufacturer}}
+        {%- if Type != '#' %}
+        |transmission ={{Type}} 
+        {%- endif %}
+        {%- if Body_Type != '#' %}
+        |body_style ={{Body_Type}} 
+        {%- endif %}
+        {%- if Wheelbase != '#' %}
+        |wheelbase   =  {{Wheelbase}} అంగుళాలు
+        {%- endif %}
+        {%- if Length != '#' and Length != 'nan'%}
+        |length    ={{Length}} అంగుళాలు
+        {%- endif %}
+        {%- if Height != '#' %}
+        |height ={{Height}} అంగుళాలు
+        {%- endif %}
+        {%- if Width != '#' %}
+        |width     ={{Width}}
+        {%- endif %}
+        {%- if Kerb_Weight != '#' %}
+        |weight     = {{Kerb_Weight}} కిలోగ్రామ్స్
+        {%- endif %}
+        
+        {{'}}\n'}}
+{% endmacro -%}
+
+{%- macro intro(introduction) -%}
+    {%- set line = introduction+"\n" -%}
+    {{-line-}}
+{%- endmacro -%}
+
+{%- macro eng_perf(Name,Engine_Type,Cylinders,Valves_Per_Cylinder,Cylinder_Configuration,Engine_Location,Displacement,Torque,Power,Type,Gears,Gear_Indicator,Minimum_Turning_Radius,Low_Fuel_Warning,Compression_Ratio,Tyre_Pressure_Monitoring_System,ASR_Traction_Control,Electric_Range,Odometer,Speedometer,Fuel_Gauge) -%}
+    {{"==ఇంజిన్-పెర్ఫార్మన్స్==\n"}}
+    {%-if Engine_Type!='#' and Name != '#' -%}
+    {%- set line =[
+        Name+"<ref>https://telugu.cardekho.com/newcars#brands</ref> అనే [[కారు|కారులో]] "+Engine_Type+" ఇంజిన్ ఉపయోగించారు. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%- elif Engine_Type!='#' -%}
+    {%- set line =[
+        "ఈ [[కారు|కారులో]] "+Engine_Type+" ఇంజిన్ ఉపయోగించారు. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif-%}
+
+    {%-if Engine_Type=="#" and Cylinders!='#' and Valves_Per_Cylinder!='#'-%}
+    {%- set line =[
+        "ఫ్యూయల్ బర్నింగ్ కొరకు ఈ కారు ఇంజిన్లో "+Cylinders+" సీలిండర్లు, మరింత సామర్థ్యం కోసం ప్రతి సిలిండర్‌కు "+Valves_Per_Cylinder+" కవాటాలు(valves) ఉన్నాయి. "
+        ]|random
+            -%}
+        {{-line-}}
+    {%-elif Cylinders!='#' and Valves_Per_Cylinder =='#'-%}
+    {%- set line =[
+        "ఫ్యూయల్ బర్నింగ్ కొరకు ఈ కారు ఇంజిన్లో "+Cylinders+" సీలిండర్లు ఉన్నాయి. "
+        ]|random
+            -%}
+        {{-line-}}
+    {%-elif Cylinders=='#' and Valves_Per_Cylinder!='#'-%}
+    {%- set line =[
+        "సిలిండర్ల సామర్థ్యం కోసం ప్రతి సిలిండర్‌కు "+Valves_Per_Cylinder+" కవాటాలు(valves) ఉన్నాయి. "
+        ]|random
+            -%}
+        {{-line-}}
+    
+    {%-endif-%}
+    {%-if Cylinder_Configuration!='#'-%}
+    {%- set line =[
+        "ఇంజిన్‌లో సీలిండర్లు "+Cylinder_Configuration+" పద్దతిలో అమర్చారు. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif%}
+    
+    {%- if Displacement!="#" and Displacement!="nan" %}
+    {%- set line=[
+            "ఈ [[కారు]] ఇంజిన్ "+Displacement+" సీసీ ఇంజిన్  డిస్ప్లేసెమెంట్ తో డిజైన్ చేసారు. "
+        ]|random
+        -%}
+        {{-line-}}
+    {%- endif %}
+    {%- if Power!="#" and Power!="nan" %}
+    {%- set line=[
+            "ఈ [[కారు]] నికర(net) హార్స్ పవర్([[అశ్వ సామర్థ్యం]]) "+Power+" ఆర్.పీ.ఎం. "
+        ]|random
+        -%}
+        {{-line-}}
+    {%- endif %}
+    {%- if Torque!="#" and Torque!="nan" %}
+    {%- set line=[
+            "ఇందులో ఇంజిన్ [[టార్క్]] సుమారుగా "+Torque+" ఆర్.పి.ఎం. ఉంది. "
+        ]|random
+        -%}
+        {{-line-}}
+    {%- endif %}
+    {%- if City_Mileage!="#" or Highway_Mileage!="#" or ARAI_Certified_Mileage!="#" or ARAI_Certified_Mileage_for_CNG!="#" -%}
+        {{"\n"}}
+        {%- set line=[
+            "\nఈ కారు మైలేజ్ సగటున ఈ క్రింద విధంగా ధృవీకరించబడినది:\n"
+        ]|random
+        -%}
+        {{-line-}}
+    {%- endif %}     
+    {%- if City_Mileage!="#" %}
+    {%- set line=[
+            "* సిటీ మైలేజ్: "+City_Mileage+" కే.ఎం.పి.ఎల్.  \n"
+        ]|random
+        -%}
+        {{-line-}}
+    {%- endif %}
+    {%- if Highway_Mileage!="#" and Highway_Mileage!="nan" %}
+    {%- set line=[
+            "* హైవే మైలేజ్: "+Highway_Mileage+" కే.ఎం.పి.ఎల్.  \n"
+        ]|random
+        -%}
+        {{-line-}}
+    {%- endif %}
+    {%- if ARAI_Certified_Mileage!="#" and ARAI_Certified_Mileage!="nan" %}
+    {%- set line=[
+            "* ఏ.ఆర్.ఏ.ఐ(ARAI) ధృవీకరించిన మైలేజ్: " +ARAI_Certified_Mileage+" కే.ఎం.పి.ఎల్. \n"
+        ]|random
+        -%}
+        {{-line-}}
+    {%- endif %}
+    {%- if ARAI_Certified_Mileage_for_CNG!="#" and ARAI_Certified_Mileage_for_CNG!="nan" %}
+    {%- set line=[
+            "* ఏ.ఆర్.ఏ.ఐ(ARAI) ధృవీకరించిన మైలేజ్(CNG): "+ARAI_Certified_Mileage_for_CNG+" కే.ఎం.పి.ఎల్. \n"
+        ]|random
+        -%}
+        {{-line-}}
+    {%- endif %}
+    {%- if Low_Fuel_Warning!="#" and Low_Fuel_Warning!="nan" %}
+    {%- set line=[
+            "కారులో [[ఇంధనం]] తక్కువ ఉన్నప్పుడు లో ఫ్యూయల్ ఇండికేటర్ సక్రియం(activate) అవుతుంది. "
+        ]|random
+        -%}
+        {{-line-}}
+    {%- endif %}
+    
+    {%- if Type!="#" and Type!="nan" %}
+    {%- set line=[
+            "ఇది ఒక "+Type+"<ref>https://www.autobutler.co.uk/blog/what-is-a-transmission</ref> కార్. "
+        ]|random
+        -%}
+        {{-line-}}
+    {%- endif %}
+
+    {%- if Gears!="#" and Gears!="nan" and Gears == "సింగల్ స్పీడ్ రిడెక్షన్ గేర్" %}
+    {%- set line=[
+            " ఈ కారు "+Gears+" ఇంజిన్ తో డిజైన్ చేయబడింది. "
+        ]|random
+        -%}
+        {{-line-}}
+    {%- elif Gears!="#" and Gears!="nan"%}
+    {%- set line=[
+            " ఈ కారు మొత్తం "+Gears+" గేర్ల ఇంజిన్ తో డిజైన్ చేయబడింది. "
+        ]|random
+        -%}
+        {{-line-}}
+    {%- endif %}
+    {%- if Compression_Ratio!="#" and Compression_Ratio!="nan" %}
+    {%- set line=[
+            "ఇంజిన్ కంప్రెషన్ నిష్పత్తి  "+Compression_Ratio+". "
+        ]|random
+        -%}
+        {{-line-}}
+    {%- endif %}
+
+    {%- if Emission_Norm!="#" and Emission_Norm!="nan" %}
+    {%- set line=[
+            "కారు ఉద్గార ప్రమాణం(Emission Standard) "+Emission_Norm+" తో ఆమోదం పొందింది. "
+        ]|random
+        -%}
+        {{-line-}}
+    {%- endif %}
+
+    {%- if Minimum_Turning_Radius!="#" and Minimum_Turning_Radius!="nan" %}
+    {%- set line=[
+            "కారు మినిమం టర్నింగ్ వ్యాసార్థం(Radius) "+Minimum_Turning_Radius+" మీటర్లు. "
+        ]|random
+        -%}
+        {{-line-}}
+    {%- endif %}
+    {%- if Tyre_Pressure_Monitoring_System!="#" and Tyre_Pressure_Monitoring_System!="nan" %}
+    {%- set line=[
+            "కారు టైర్లు గాలి పీడనం తరచూ పర్యవేక్షించడానికి టైర్-ప్రెషర్ మానిటర్(టిపిఎం) అనుసంధానం అయి ఉంది. "
+        ]|random
+        -%}
+        {{-line-}}
+    {%- endif %}
+    {%- if ASR_Traction_Control!="#" and ASR_Traction_Control!="nan" %}
+    {%- set line=[
+            " రోడ్డు పరిస్థితులకు అనుగుణంగా త్రొట్టెల్(Throttle) ఇన్పుట్, ఇంజిన్ శక్తి మరియు టార్క్ బదిలీ సరిపోనప్పుడు భద్రత కోసం "+ASR_Traction_Control+" ట్రాక్షన్ కంట్రోల్ సిస్టం సక్రియం(activate) అవుతుంది. "
+        ]|random
+        -%}
+        {{-line-}}
+    {%- endif %}
+    
+
+{%- endmacro -%}
+
+{%- macro Design(Body_Type,Doors,Seating_Capacity,Gears,Fuel_System,Fuel_Type,Fuel_Tank_Capacity,Fuel_Gauge,Drivetrain,Front_Brakes,Rear_Brakes,ABS_Anti_lock_Braking_System,Front_Suspension,Rear_Suspension,Ventilation_System,Handbrake,Number_of_Airbags,Start_Stop_Button,Paddle_Shifters,ext,tyres,Wheelbase,Height,Length,Width,Ground_Clearance,Front_Track,Rear_Track,Front_Tyre_Rim,Rear_Tyre_Rim,Wheels_Size) -%}
+    {{ "\n==కార్ డిజైన్==\n" }}
+    {%-if Body_Type!='#' and Name != '#' -%}
+    {%- set line =[
+        Name+"<ref>https://telugu.cardekho.com/newcars#brands</ref> అనే [[కారు]] "+Body_Type+" బాడీ స్టైల్తో రూపొందించారు. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%- elif Engine_Type!='#' -%}
+    {%- set line =[
+        "ఈ [[కారు]] "+Body_Type+" బాడీ స్టైల్తో రూపొందించారు. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif-%}
+
+    {%-if Doors!='#'-%}
+    {%- set line =[
+        "దీనికి మొత్తం "+Doors+" డోర్స్ ఉంటాయి. ",
+        "ఇది ఒక "+Doors+" డోర్స్ కార్. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif%}
+    {%-if Seating_Capacity!='#'-%}
+    {%- set line =[
+        "ఈ కారులో "+Seating_Capacity+" ప్రయాణించవచ్చు. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif%}
+    {%-if Gears!='#'-%}
+    {%- set line =[
+        "ఈ కారుకి మొత్తం "+Gears+" గేర్లు ఉన్నాయి. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif%}
+    
+    {%-if Fuel_System!='#'-%}
+    {%- set line =[
+        "ఇందులో "+Fuel_System+" ఇందన వ్యవస్థ వాడారు. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif%}
+
+    {%-if Fuel_Type!='#'and Fuel_Tank_Capacity!='#' -%}
+    {%- set line =[
+        "ఈ కారులో ఉపయోగించే ఇంధనం "+Fuel_Type+" కాగా దీని ట్యాంక్ సామర్థ్యం "+Fuel_Tank_Capacity+" లీటర్లు. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-elif Fuel_Type!='#'and Fuel_Tank_Capacity=='#' -%}
+    {%- set line =[
+        "ఈ కారులో ఉపయోగించే ఇంధనం "+Fuel_Type+". "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-elif Fuel_Type!='#'and Fuel_Tank_Capacity!='#' -%}
+    {%- set line =[
+        "దీని ట్యాంక్ సామర్థ్యం "+Fuel_Tank_Capacity+". "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif%}
+
+    {%-if Fuel_Gauge!='#'and Fuel_Gauge!='Yes'-%}
+    {%- set line =[
+        "ట్యాంక్‌లోని ఇంధన స్థాయిని డ్రైవర్ కి  తెలుసుకోవడానికి "+Fuel_Gauge+" ఫ్యూయల్ గేజ్ ఉంది. ",
+        "ట్యాంక్‌లోని ఇంధన స్థాయిని డ్రైవర్ కి సూచించడానికి "+Fuel_Gauge+" ఫ్యూయల్ గేజ్ ఉంది. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-elif Fuel_Gauge=='Yes'-%}
+    {%- set line =[
+        "ట్యాంక్‌లోని ఇంధన స్థాయిని డ్రైవర్ కి  తెలుసుకోవడానికి ఫ్యూయల్ గేజ్ ఉంది. ",
+        "ట్యాంక్‌లోని ఇంధన స్థాయిని డ్రైవర్ కి సూచించడానికి ఫ్యూయల్ గేజ్ ఉంది. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif%}
+    
+    {%-if Drivetrain!='#'-%}
+    {%- set line =[
+        "ఈ కారు "+Drivetrain+" డ్రైవ్ ట్రైన్ తో రూపొందించారు. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif%}
+
+    {%-if Front_Suspension!='#' and Rear_Suspension!="#" and Front_Suspension!=Rear_Suspension -%}
+    {%- set line =[
+        "అవాంఛిత కుదుపులను(jerks) నివారించడానికి ఈ కారులో "+Front_Suspension+" ఫ్రంట్ సస్పెన్షన్, "+Rear_Suspension+" రియర్ సస్పెన్షన్ ఉపయోగించారు. ",
+        "అవాంఛిత కుదుపులను(jerks) నివారించడానికి ఈ కారులో "+Front_Suspension+" ఫ్రంట్ సస్పెన్షన్, "+Rear_Suspension+" రియర్ సస్పెన్షన్ ఇవ్వబడింది. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%- elif Front_Suspension!='#' and Rear_Suspension!="#" and Front_Suspension==Rear_Suspension -%}
+    {%- set line =[
+        "అవాంఛిత కుదుపులను(jerks) నివారించడానికి ఈ కారులో "+Front_Suspension+" ఫ్రంట్ సస్పెన్షన్,రియర్ సస్పెన్షన్ ఉపయోగించారు. ",
+        "అవాంఛిత కుదుపులను(jerks) నివారించడానికి ఈ కారులో "+Front_Suspension+" ఫ్రంట్ సస్పెన్షన్,రియర్ సస్పెన్షన్ ఇవ్వబడింది. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-elif Front_Suspension!='#' and Rear_Suspension=="#"-%}
+    {%- set line =[
+        "అవాంఛిత కుదుపులను(jerks) నివారించడానికి ఈ కారులో "+Front_Suspension+" ఫ్రంట్ సస్పెన్షన్ ఉపయోగించారు. ",
+        "అవాంఛిత కుదుపులను(jerks) నివారించడానికి ఈ కారులో "+Front_Suspension+" ఫ్రంట్ సస్పెన్షన్ ఇవ్వబడింది. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-elif Front_Suspension=='#' and Rear_Suspension!="#"-%}
+    {%- set line =[
+        "అవాంఛిత కుదుపులను(jerks) నివారించడానికి ఈ కారులో "+Rear_Suspension+" రియర్ సస్పెన్షన్ ఉపయోగించారు. ",
+        "అవాంఛిత కుదుపులను(jerks) నివారించడానికి ఈ కారులో "+Rear_Suspension+" రియర్ సస్పెన్షన్ ఇవ్వబడింది. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif%}
+    {%-if Front_Brakes!='#' and Rear_Brakes!="#" and Front_Brakes == Rear_Brakes -%}
+    {%- set line =[
+        "ఈ కారులో "+Front_Brakes+" రకపు ఫ్రంట్ బ్రేకులు, రియర్ బ్రేకులు ఉపయోగించారు. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-elif Front_Brakes!='#' and Rear_Brakes!="#"-%}
+    {%- set line =[
+        "ఈ కారులో "+Front_Brakes+" రకపు ఫ్రంట్ బ్రేకులు, "+Rear_Brakes+" రకపు రియర్ బ్రేకులు ఉపయోగించారు. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-elif Front_Brakes!='#' and Rear_Brakes=="#"-%}
+    {%- set line =[
+        "ఈ కారులో "+Front_Brakes+" రకపు ఫ్రంట్ బ్రేకులు ఉపయోగించారు. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-elif Front_Brakes=='#' and Rear_Brakes!="#"-%}
+    {%- set line =[
+        "ఈ కారులో "+Rear_Brakes+" రకపు రియర్ బ్రేకులు ఉపయోగించారు. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif%}
+    {%-if ABS_Anti_lock_Braking_System=="Yes"-%}
+    {%- set line =[
+        "ఈ కారు చక్రాలు అత్యవసర బ్రేకింగ్ పరిస్థితులలో లాక్ కాకుండా యాంటీ బ్రేకింగ్ సిస్టమ్ ఉపయోగించారు. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif%}
+
+
+    {%-if Ventilation_System!='#'-%}
+    {%- set line =[
+        "స్థిరమైన గాలి ప్రవాహం కోసం ఈ కారులో "+Ventilation_System+" సిస్టమ్ ఉపయోగించారు. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif%}
+    {%-if Handbrake!='#'-%}
+    {%- set line =[
+        "ఆగి ఉన్నప్పుడు వాహనాన్ని కదలకుండా ఉంచడానికి ఈ కారులో "+Handbrake+" హ్యాండ్ బ్రేక్ సౌకర్యం ఉంది. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif%}
+    
+    {%-if Start_Stop_Button!="Yes"-%}
+    {%- set line =[
+        "ఈ కారుని స్టార్ట్ చేయడానికి కీ తో పాటు స్టార్ట్-స్టాప్ బటన్ కూడా ఉంది. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif%}
+    {%-if Paddle_Shifters!="Yes"-%}
+    {%- set line =[
+        "గేర్లను మాన్యువల్ గా మార్చడానికి డ్రైవర్లకు సహాయపడే పాడిల్ షిఫ్టర్ను ఇందులో ఉపయోగించారు. \n"
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif%}
+    {%- if ((Wheelbase != "#" and Wheelbase != "nan") or (Length != "#" and Length != "nan") or (Ground_Clearance != "#" and Ground_Clearance != "nan") or (Width != "#" and Width != "nan") or (Height != "#" and Height != "nan") or (Front_Track != "#" and Front_Track != "nan") or (Rear_Track != "#" and Rear_Track != "nan")) %}
+        {%- set line =[
+            "\n===కారు బాహ్య కొలతలు===\n"
+            ]|random
+            -%}
+            {{-line-}}
+        {{- '{| class="wikitable"' -}}
+        {{- '\n' -}}
+        {{- '! డైమెన్షన్ || వేల్యూ' -}}
+        {{- '\n' -}}
+        {{- '|-' -}}
+        {{- '\n' -}} 
+        {%- for key,value in ext.items() -%}
+            {%- if key == "Wheelbase" and value != "#" -%}
+                {%- set line1 = "వీల్ బేస్" -%}
+                {%- set line2 = value + " మిల్లీమీటర్లు" -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}} 
+
+            {%- elif key == "Length" and value != "#" -%}
+                {%- set line1 = "పొడవు" -%}
+                {%- set line2 = value + " మిల్లీమీటర్లు" -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+
+            {%- elif key == "Width" and value != "#" -%}
+                {%- set line1 = "వెడల్పు(అద్దాలు లేకుండా)" -%}
+                {%- set line2 = value + " మిల్లీమీటర్లు" -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+
+            {%- elif key == "Height" and value != "#" -%}
+                {%- set line1 = "ఎత్తు" -%}
+                {%- set line2 = value + " మిల్లీమీటర్లు" -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+
+            {%- elif key == "Ground_Clearance" and value != "#" -%}
+                {%- set line1 = "మినిమం గ్రౌండ్ క్లియరెన్స్" -%}
+                {%- set line2 = value + " మిల్లీమీటర్లు" -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+
+            {%- elif key == "Front_Track" and value != "#" -%}
+                {%- set line1 = "ఫ్రంట్ ట్రాక్ వెడల్పు" -%}
+                {%- set line2 = value + " మిల్లీమీటర్లు" -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+
+            {%- elif key == "Rear_Track" and value != "#" -%}
+                {%- set line1 = "బ్యాక్ ట్రాక్ వెడల్పు" -%}
+                {%- set line2 = value + " మిల్లీమీటర్లు" -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+            {%- endif -%}
+        {%- endfor -%}
+        {{- '|}'-}}
+        {{- '\n' -}} 
+    {%- endif %}
+
+    {%- if (Front_Tyre_Rim != "#" and Front_Tyre_Rim != "nan") or (Rear_Tyre_Rim != "#" and Rear_Tyre_Rim != "nan") or (Wheels_Size != "#" and Wheels_Size != "nan") %}
+        {%- set line =[
+            "===చక్రాలు, టైర్లు===\n"
+            ]|random
+            -%}
+            {{-line-}}
+        {{- '{| class="wikitable"' -}}
+        {{- '\n' -}}
+        {{- '! డైమెన్షన్ || వేల్యూ' -}}
+        {{- '\n' -}}
+        {{- '|-' -}}
+        {{- '\n' -}} 
+        {%- for key,value in tyres.items() -%}
+            {%- if key == "Front_Tyre_Rim" and Front_Tyre_Rim != "#" and Front_Tyre_Rim != "nan" -%}
+                {%- set line1 = "ఫ్రంట్ టైర్ పరిమాణం" -%}
+                {%- set line2 = value + " అంగుళాలు" -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+            {%- elif key == "Rear_Tyre_Rim" and Rear_Tyre_Rim != "#" and Rear_Tyre_Rim != "nan" -%}
+                {%- set line1 = "బ్యాక్ టైర్ పరిమాణం" -%}
+                {%- set line2 = value -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+            {%- elif key == "Wheels_Size" and Wheels_Size != "#" and Wheels_Size!="nan"-%}
+                {%- set line1 = "చక్రాల పరిమాణం" -%}
+                {%- set line2 = value -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+             {%- endif -%}
+        {%- endfor -%}
+        {{- '|}'-}}
+        {{- '\n' -}} 
+    {%- endif %}
+    
+{%- endmacro -%}
+
+{%- macro other_features(feat_len,Audiosystem,Bluetooth,Seats_Material,Door_Pockets,Voice_Recognition,USB_Compatibility,Navigation_System,iPod_Compatibility,Turbocharger,Cup_Holders,Power_Windows,Power_Steering,features,Keyless_Entry,Engine_Malfunction_light,Fuel_lid_Opener,Child_Safety_Locks,High_Speed_Alert_System,Walk_Away_Auto_Car_Lock,Headlight_Reminder,Automatic_Headlamps,Odometer,Speedometer,Rain_Sensing_Wipers,Tachometer) -%}
+    {{"\n==ఇతర ఫీచర్స్ ==\n"}}
+    {%- if (Odometer!="Yes" or Speedometer!="Yes") %}
+        {%- if (Odometer!="#" and Speedometer!="#") %}
+        {%- set line=[
+                "కారు ఎంత దూరం ప్రయాణించిందో తెలుసుకోవడానికి "+Odometer+" ఓడోమీటర్, ఎంత వేగంగా ప్రయాణిస్తుంది అని  తెలుసుకోవడానికి "+Speedometer+" స్పీడోమీటర్ ఉన్నవి. "
+            ]|random
+            -%}
+            {{-line-}}
+        {%- elif Odometer!="#" and Speedometer=="#" %}
+        {%- set line=[
+                "కారు ఎంత దూరం ప్రయాణించిందో తెలుసుకోవడానికి "+Odometer+" ఓడోమీటర్ ఉంది. "
+            ]|random
+            -%}
+            {{-line-}}
+        {%- elif Odometer=="#" and Speedometer!="#" %}
+        {%- set line=[
+                "కారు ఎంత వేగంగా ప్రయాణిస్తుంది అని  తెలుసుకోవడానికి "+Speedometer+" స్పీడోమీటర్ కలిగి ఉంది. "
+            ]|random
+            -%}
+            {{-line-}}
+        {%- endif %}
+    {%- endif %}
+
+    {%- if Rain_Sensing_Wipers!="#" and Rain_Sensing_Wipers!="nan" %}
+    {%- set line=[
+            "వర్షం వచ్చినప్పుడు స్వయంగా అద్దాలు శుభ్రపరచడానికి రైన్ సెన్సింగ్ వైపర్స్(Rain Sensing Wipers)  ఉన్నాయి. "
+        ]|random
+        -%}
+        {{-line-}}
+    {%- endif %}
+
+    {%- if Tachometer!="#" and Tachometer != "Not on offer" and Tachometer!="Yes" %}
+        {%- set line=[
+            "కారు(మాన్యువల్ లేదా ఆటోమేటిక్) ఏ గేర్‌లో ఉందో చూపించడానికి ఇందులో "+Tachometer+" టాకోమీటర్ ఉపయోగించారు. "
+        ]|random
+        -%}
+        {{-line-}}
+    {%- elif Tachometer =="Yes" %}
+        {%- set line=[
+            "కారు(మాన్యువల్ లేదా ఆటోమేటిక్) ఏ గేర్‌లో ఉందో చూపించడానికి ఇందులో టాకోమీటర్ ఉపయోగించారు. "
+        ]|random
+        -%}
+        {{-line-}}
+    {%- endif %}
+
+    {%-if Keyless_Entry!='#' and Keyless_Entry != "Not on offer" -%}
+    {%- set line =[
+        "డ్రైవర్లు దూరం నుంచి కారు డోర్లను తెరవడానికి లేదా స్టార్ట్ చేయడానికి "+Keyless_Entry+" కీ లెస్ ఎంట్రీ సిస్టం ఉంది. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif%}
+
+    {%-if High_Speed_Alert_System!='#'-%}
+    {%- set line =[
+            "హై స్పీడ్ అలెర్ట్ సిస్టం అనేది డ్రైవర్ డిస్ప్లే వేగ పరిమితిని చూపిస్తుంది, డ్రైవర్ స్పీడ్ లిమిట్ మించి డ్రైవింగ్ చేస్తుంటే వార్నింగ్(అలారమ్) ఇస్తుంది. "
+            ]|random
+            -%}
+            {{-line-}}
+    {%-endif%}
+
+    {%-if Walk_Away_Auto_Car_Lock!='#'-%}
+    {%- set line =[
+        "డ్రైవర్ కారు నుండి దూరం గా వెళ్ళగానే కార్ లాక్ అవ్వడానికి ఇందులో వాక్-అవే ఆటో కార్ లాకింగ్ సిస్టం ఉంది. "
+        ]|random
+            -%}
+            {{-line-}}
+    {%-endif%}
+
+    {%-if Automatic_Headlamps!="#" -%}
+    {%- set line =[
+    "డ్రైవింగ్ పరిస్థితులలో డ్రైవర్ హెడ్‌లైట్స్ మాన్యువల్‌గా ఆన్ లేదా ఆఫ్ చేయవలసిన అవసరం లేకుండా ఆటోమేటిక్ హెడ్‌లైట్స్ సిస్టం ఈ కారుకి అనుసంధానించారు. \n"
+    ]|random
+            -%}
+    {{-line-}}
+    {%-endif%}
+    {{"\n"}}
+    {%- if feat_len > 1 -%}
+        {%- set line="ఈ కారులో గల ఫీచర్స్ వివరాలు కింద ఇవ్వబడ్డాయి:" -%}
+        {{-line-}}
+        {{"\n"}}
+    {%- endif -%}
+    {%- set line=[
+        "ఉంది",
+        "కలదు"]|random -%}
+    {{- '{| class="wikitable"' -}}
+        {{- '\n' -}}
+        {{- '|-' -}}
+        {{- '\n' -}}         
+        {%- for key,value in features.items() -%}
+            {%- if key == "Power_Windows" and (value != "#" and value!= "Not on offer") -%}
+                {%- set line1 = "<b>పవర్ విండోస్</b>" -%}
+                {%- set line2 = value -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+            {%- elif key == "Power_Steering" and (value != "#" and value!= "Not on offer") -%}
+                {%- set line1 = "<b>పవర్ స్టీరింగ్</b>" -%}
+                {%- set line2 = value -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+            {%- elif key == "Audiosystem" and (value != "#" and value!= "Not on offer") -%}
+                {%- set line1 = "<b>ఆడియో సిస్టమ్</b>" -%}
+                {%- set line2 = value -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+             {%- elif key == "Bluetooth" and (value != "#" and value!= "Not on offer") -%}
+                {%- set line1 = "<b>బ్లూటూత్</b>" -%}
+                {%- set line2 = line -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+             {%- elif key == "Fuel_lid_Opener" and (value != "#" and value!= "Not on offer") -%}
+                {%- set line1 = "<b>ఫ్యూయల్ లిడ్ ఓపెనర్</b>" -%}
+                {%- set line2 = value -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+             {%- elif key == "Seats_Material" and (value != "#" and value!= "Not on offer") -%}
+                {%- set line1 = "<b>సీట్స్ మెటీరియల్</b>" -%}
+                {%- set line2 = value -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+             {%- elif key == "Child_Safety_Locks" and (value != "#" and value!= "Not on offer") -%}
+                {%- set line1 = "<b>చైల్డ్ సేఫ్టీ లాక్స్</b>" -%}
+                {%- set line2 = line -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+             {%- elif key == "Door_Pockets" and (value != "#" and value!= "Not on offer") -%}
+                {%- set line1 = "<b>డోర్ పాకెట్స్</b>" -%}
+                {%- set line2 = value -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+             {%- elif key == "Voice_Recognition" and (value != "#" and value!= "Not on offer") -%}
+                {%- set line1 = "<b>వాయిస్ రెకగ్నిషన్</b>" -%}
+                {%- set line2 = line -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+             {%- elif key == "USB_Compatibility" and (value != "#" and value!= "Not on offer") -%}
+                {%- set line1 = "<b>యుఎస్బి కంపాటిబిలిటీ</b>" -%}
+                {%- set line2 = line -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+             {%- elif key == "Navigation_System" and (value != "#" and value!= "Not on offer") -%}
+                {%- set line1 = "<b>నావిగేషన్ సిస్టమ్</b>" -%}
+                {%- set line2 = line -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+            {%- elif key == "Turbocharger" and (value != "#" and value!= "Not on offer") -%}
+                {%- set line1 = "<b>టర్బో చార్జర్</b>" -%}
+                {%- set line2 = line -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+             {%- elif key == "iPod_Compatibility" and (value != "#" and value!= "Not on offer") -%}
+                {%- set line1 = "<b>ఐపాడ్ కంపాటిబిలిటీ</b>" -%}
+                {%- set line2 = line -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+            {%- elif key == "Cup_Holders" and (value != "#" and value!= "Not on offer") -%}
+                {%- set line1 = "<b>కప్ హోల్డర్స్</b>" -%}
+                {%- set line2 = value -%}
+                {{- "| {} || {}".format(line1,line2) -}}
+                {{- '\n' -}}
+                {{- "|-" -}}
+                {{- '\n' -}}
+             {%- endif -%}
+        {%- endfor -%}
+        {{- '|}'-}}
+        {{- '\n' -}} 
+{%- endmacro -%}
+
+{%- macro versions(ver,model,Name,len) -%}
+    {%- for key, value in vers.items() -%}
+        {%- if key == model -%}
+            {%- if len > 1 -%}
+                {{"\n==సంబంధిత మోడల్స్==\n"}}
+                {%- for i in value -%}
+                    {%- set line= i-%}
+                    {%- if line == Name -%}
+                        {%- set line="" -%}
+                        {{-line-}}
+                    {%- else -%}
+                        {%- set line="*[["+i+"]]\n"-%}
+                        {{ line }}
+                    {%- endif -%}
+                {%- endfor -%}
+            {%- endif -%}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endmacro -%}
+
+{%- macro references() -%}
+    {{"\n==మూలాలు==\n"}}
+    {%- set line = "{{reflist}}\n" -%}
+    {{-line-}}
+{%- endmacro -%}
+
+{%- macro categories(manufacturer) -%}
+    {%- set line = "[[వర్గం:మోటారు వాహనాలు]]\n" -%}
+    {{-line-}}
+    {%- set line = "[[వర్గం:వాహనాలు]]\n" -%}
+    {{-line-}}
+    {%- set line = "[[వర్గం:భారతీయ వాహనాలు]]\n" -%}
+    {{-line-}}
+    {%- set line = "[[వర్గం:"+manufacturer+" వాహనాలు]]\n" -%}
+    {{-line-}}
+    {%- set line = "[[వర్గం:తెవికీ భారతీయ వాహనాలు]]\n" -%}
+    {{-line-}}
+{%- endmacro -%}
+
+
+{{-Infobox(img,manufacturer,Name,Type,Power,Fuel_Type,Body_Type,Wheelbase,Length,Height,Kerb_Weight,Width)-}}
+{{- intro(introduction) -}}
+{{- eng_perf(Name,Engine_Type,Cylinders,Valves_Per_Cylinder,Cylinder_Configuration,Engine_Location,Displacement,Torque,Power,Type,Gears,Gear_Indicator,Minimum_Turning_Radius,Low_Fuel_Warning,Compression_Ratio,Tyre_Pressure_Monitoring_System,ASR_Traction_Control,Electric_Range,Fuel_Gauge) -}}
+{{- Design(Body_Type,Doors,Seating_Capacity,Gears,Fuel_System,Fuel_Type,Fuel_Tank_Capacity,Fuel_Gauge,Drivetrain,Front_Brakes,Rear_Brakes,ABS_Anti_lock_Braking_System,Front_Suspension,Rear_Suspension,Ventilation_System,Handbrake,Number_of_Airbags,Start_Stop_Button,Paddle_Shifters,ext,tyres,Wheelbase,Height,Length,Width,Ground_Clearance,Front_Track,Rear_Track,Front_Tyre_Rim,Rear_Tyre_Rim,Wheels_Size) -}}
+{{- other_features(feat_len,Audiosystem,Bluetooth,Seats_Material,Door_Pockets,Voice_Recognition,USB_Compatibility,Navigation_System,iPod_Compatibility,Turbocharger,Cup_Holders,Power_Windows,Power_Steering,features,Keyless_Entry,Engine_Malfunction_light,Fuel_lid_Opener,Child_Safety_Locks,High_Speed_Alert_System,Walk_Away_Auto_Car_Lock,Headlight_Reminder,Automatic_Headlamps,Odometer,Speedometer,Rain_Sensing_Wipers,Tachometer) -}}
+{{- versions(ver,model,Name,len) -}}
+{{- references() -}}
+{{- categories(manufacturer) -}}
+
+
